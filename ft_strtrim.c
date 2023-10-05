@@ -22,7 +22,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	len = ft_strlen(s1);
 	start = 0;
-	while (ft_strchr(set, s1[start]) && start < len - 1)
+	while (ft_strchr(set, s1[start]) && start < len)
 	{
 		start++;
 	}
@@ -30,7 +30,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (len > start && ft_strchr(set, s1[len]))
 		len--;
 	ptr = (char *)ft_calloc(len - start + 2, 1);
-	printf("s:%i e:%i, reservo %i\n", start, len, len - start + 2);
 	if (!ptr)
 		return (NULL);
 	ft_strlcpy(ptr, s1 + start, len - start + 2);

@@ -22,9 +22,9 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 		return ;
 	if (!lst)
 	{
-		lst = &new;
+		*lst = new;
 		return ;
 	}
-	new->next = lst[0];
-	lst = &new;
+	new->next = *lst;
+	*lst = new;
 }

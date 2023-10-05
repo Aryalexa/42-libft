@@ -38,6 +38,7 @@ static int	ft_nbrlen(int n)
 }
 
 /**
+ * Integer to string.
  * Using malloc(3), it generates a string that
  * represents the integer value given as argument.
  * Negative numbers are managed.
@@ -56,19 +57,20 @@ char	*ft_itoa(int n)
 	str = (char *)ft_calloc(len + 1, 1);
 	if (!str)
 		return (NULL);
-	if (n < 0)
+	else if (n < 0)
 	{
 		num = -1 * n;
 		str[0] = '-';
 	}
 	else
 		num = n;
+	if (n == 0)
+		str[0] = '0';
 	len--;
 	while (num > 0)
 	{
-		str[len--] = (n % 10) + '0';
-		n = n / 10;
+		str[len--] = (num % 10) + '0';
+		num = num / 10;
 	}
-	str[len] = n;
 	return (str);
 }

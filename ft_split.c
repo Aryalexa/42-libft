@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-static int	count_words(char const *s, char c)
+static int	count_words(const char *s, char c)
 {
 	int	count;
 
 	count = 0;
-	while (s)
+	while (*s)
 	{
 		while (*s == c)
 			s++;
-		if (s)
+		if (*s)
 			count++;
-		while (s && *s != c)
+		while (*s && *s != c)
 			s++;
 	}
 	return (count);
@@ -48,6 +48,19 @@ static int	ft_dupsplit(char **dst, const char *src, char c)
 	return (len);
 }
 
+static void	free_strlst(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
+}
+
 /**
  * Reserva (utilizando malloc(3)) un array de strings
 resultante de separar la string ’s’ en substrings
@@ -62,23 +75,23 @@ char	**ft_split(char const *s, char c)
 	int		dir_j;
 	int		wj_len;
 
+	dirs = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!dirs)
+		return (0);
 	dir_j = 0;
-	dirs = (char **)malloc(sizeof(char *) * count_words(s, c));
-	if (dirs == NULL)
-		dirs = (char **)malloc(sizeof(char *) * 1);
-	else
+	while (*s)
 	{
-		while (s)
+		while (*s == c)
+			s++;
+		if (*s)
 		{
-			while (*s == c)
-				s++;
-			if (s)
-			{	
-				wj_len = ft_dupsplit(&dirs[dir_j], s, c);
-				if (wj_len < 0)
-					return (NULL);
-				s += wj_len;
+			wj_len = ft_dupsplit(&dirs[dir_j++], s, c);
+			if (wj_len < 0)
+			{
+				free_strlst(dirs);
+				return (NULL);
 			}
+			s += wj_len;
 		}
 	}
 	dirs[dir_j] = 0;
