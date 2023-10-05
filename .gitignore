@@ -3,5 +3,3 @@
 *.dSYM
 *.o
 *.a
-tests.c
-test.sh
