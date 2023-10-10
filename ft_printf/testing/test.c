@@ -3,7 +3,7 @@
 #include "../ft_printf.h"
 
 
-/*
+
 void test_ft_printf()
 {
 	//ft_printf("hola\n", "jaja\n", "jeje\n");
@@ -95,7 +95,7 @@ void test_ft_printf()
 	printf(" +i :% +i:\n", 23); // :+23: // ' ' is ignored
 
 
-}*/
+}
 
 void test_str_pointer_go_forward(char **str)
 {
@@ -114,7 +114,20 @@ void test_str_pointer_go_forward(char **str)
 
 void test_modify_struct(t_conv_specif *cs)
 {
-	printf("test 1\n");
+	cs->sp = '2';
+
+	// t_conv_specif *cs;
+	// printf("created. sp : ");
+	// if (!cs->sp)
+	// 	printf("NULL\n");
+	// else
+	// 	printf("%c\n", cs->sp);
+	// test_modify_struct(cs);
+	// printf("modified. sp : ");
+	// if (!cs->sp)
+	// 	printf("NULL\n");
+	// else
+	// 	printf("%c\n", cs->sp);
 }
 
 int main()
@@ -126,5 +139,17 @@ int main()
 	ft_putstr_fd("-termina\n", 1);
 	
 	//test_ft_printf();
+	t_conv_specif *cs;
+	printf("created. sp : ");
+	if (!cs->sp)
+		printf("NULL\n");
+	else
+		printf("%c\n", cs->sp);
+	test_modify_struct(cs);
+	printf("modified. sp : ");
+	if (!cs->sp)
+		printf("NULL\n");
+	else
+		printf("%c\n", cs->sp);
 
 }

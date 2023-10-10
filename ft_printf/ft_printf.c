@@ -54,42 +54,39 @@ char	*ft_strndup(const char *s1, size_t n)
 	return (dup);
 }
 
+	// "-0# +w.prec"
 t_conv_specif *process_cs(t_conv_specif *cs, const char *str, int len)
 {
-	// "-0# +w.prec"
-	char **parts;
-	char *dup;
-	int i;
+	char	**parts;
+	char	*dup;
+	int		i;
 
 	cs = reset_conversion_specifier(cs);
 	cs->sp = str[len - 1];
 	dup = ft_strndup(str, len);
 	parts = ft_split(dup, '.');
-	if (!parts[0])
-		return (cs);
 	i = 0;
-	while (parts[0][i])
-	{
-		while (ft_strchr("-0# +", parts[0][i]))
+	if (parts[0])
+		while (parts[0][i])
 		{
-			if (parts[0][i] == '-')
-				cs->minus_rpad = 1;
-			else if (parts[0][i] == '0')
-				cs->zero_lpad = 1;
-			else if (parts[0][i] == '#')
-				cs->hash_alt_form = 1;
-			else if (parts[0][i] == ' ')
-				cs->space_positive = 1;
-			else if (parts[0][i] == '+')
-				cs->plus_positive = 1;
-			i++;
+			while (ft_strchr("-0# +", parts[0][i]))
+			{
+				if (parts[0][i] == '-')
+					cs->minus_rpad = 1;
+				else if (parts[0][i] == '0')
+					cs->zero_lpad = 1;
+				else if (parts[0][i] == '#')
+					cs->hash_alt_form = 1;
+				else if (parts[0][i] == ' ')
+					cs->space_positive = 1;
+				else if (parts[0][i] == '+')
+					cs->plus_positive = 1;
+				i++;
+			}
+			cs->min_width_lpad = ft_atoi(&parts[0][i]);
 		}
-		cs->min_width_lpad = ft_atoi(&parts[0][i]);
-	}
-	if (!parts[1])
-		return (cs);
-	cs->precision = ft_atoi(parts[1]);
-
+	if (parts[0] && parts[1])
+		cs->precision = ft_atoi(parts[1]);
 	free(dup);
 	free(parts);
 	return (cs);
@@ -99,6 +96,7 @@ t_conv_specif *process_cs(t_conv_specif *cs, const char *str, int len)
 
 /**
  * return number of printed chars
+ * "-0# +w.prec"
 */
 int print_value(va_list ap, t_conv_specif *sc)
 {
@@ -106,9 +104,9 @@ int print_value(va_list ap, t_conv_specif *sc)
 	// añadir todo lo que implican los flags para que se imprima bien
 	if (sc->sp == 'c')
 		ft_putchar_fd(va_arg(ap, int), 1);
-	else if (sc->sp == 's')
+	else if (sc->sp == 's') // influyen: .prec, luego w
 		ft_putstr_fd(va_arg(ap, char *), 1);
-	else if (sc->sp == 'p')
+	else if (sc->sp == 'p') // 
 		print_pointer_as_hex(va_arg(ap, void *), 1); // as if by %#x
 	else if (sc->sp == 'd' || sc->sp == 'i')
 		ft_putnbr_fd(va_arg(ap, int), 1);
