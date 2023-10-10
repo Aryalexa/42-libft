@@ -13,11 +13,10 @@
 #include "libft.h"
 
 /**
- * Envía el carácter ’c’ al file descriptor
-especificado.
+ * It sends the char 'c' to the file descriptor specified
  * 
- * c: El carácter a enviar.
- * fd: El file descriptor sobre el que escribir.
+ * @param c the character to write
+ * @param fd the file descriptor where to wirte
  * @return void
 */
 void	ft_putchar_fd(char c, int fd)

@@ -62,12 +62,10 @@ static void	free_strlst(char **strs)
 }
 
 /**
- * Reserva (utilizando malloc(3)) un array de strings
-resultante de separar la string ’s’ en substrings
-utilizando el caracter ’c’ como delimitador. El
-array debe terminar con un puntero NULL.
- * 
- * 
+ * It allocates memory using malloc(3) for an array of strings
+ * which is the result of dividing the string 's' in substrings 
+ * using the char 'c' as delimiter. The array should end with 
+ * a NULL pointer.
 */
 char	**ft_split(char const *s, char c)
 {

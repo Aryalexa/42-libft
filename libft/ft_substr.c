@@ -20,19 +20,14 @@ static size_t	min_sizes(size_t n1, size_t n2)
 		return (n2);
 }
 
-/*
-Reserva (con malloc(3)) y devuelve una substring de
-la string ’s’.
-La substring empieza desde el índice ’start’ y
-tiene una longitud máxima ’len’.
-PARAMS
-	s: La string desde la que crear la substring.
-	start: El índice del caracter en ’s’ desde el que
-	empezar la substring.
-	len: La longitud máxima de la substring.
-RETURN VALUE
-	La substring resultante.
-	NULL si falla la reserva de memoria.
+/**
+ * It allocates memory (malloc) and returns a substring of the string 's'.
+ * The substring starts at index 'start' and has a maximum length of 'len'.
+ * 
+ * @param s string from which to create the substring
+ * @param start index of the character in the string where the substring starts
+ * @param len the maximum length of the substring
+ * @returns the substring. NULL if memory fails.
 */
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

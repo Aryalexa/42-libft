@@ -12,10 +12,6 @@
 
 #include "libft.h"
 
-// char	*numstr;
-// numstr = ft_itoa(n);
-// ft_putstr_fd(numstr, fd);
-// free(numstr);
 void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)

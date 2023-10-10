@@ -11,14 +11,12 @@
 /* ************************************************************************** */
 
 /**
- * A cada carácter de la string ’s’, aplica la función
-’f’ dando como parámetros el índice de cada
-carácter dentro de ’s’ y la dirección del propio
-carácter, que podrá modificarse si es necesario.
-// address: &s[i] or s+i
- * 
- * @param s La string que iterar.
- * @param f La función a aplicar sobre cada carácter.
+ * For each char in the string 's', it applies the function 'f'
+ * giving as paramemeters the index of each char within 's' and 
+ * the address of each char itself, which could be modified if necessary.
+ * // address: &s[i] or s+i
+ * @param s the string to iterate
+ * @param f the function to apply over each char
  * @return void
 */
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
