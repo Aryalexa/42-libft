@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "ft_printf.h"
 
 
 static char    *uitoa_base(unsigned int number, char *base, int b)
@@ -40,7 +40,7 @@ void print_uint_as_hex(unsigned int ui, char case_, int fd)
     else
         str_hex = uitoa_base(ui, "0123456789ABCDEF", 16);
     if (!str_hex)
-        
+
     ft_putstr_fd(str_hex, fd);
     free(str_hex);
 }

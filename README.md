@@ -65,3 +65,4 @@ What we learnt: variadic functions in C, va_start, va_arg, va_copy, va_end
 how to run
 - given a main in ft_ptinf.c and libft.a is present
 ``gcc ft_printf.c utils.c libft.a``
+- more info: https://linux.die.net/man/3/printf
