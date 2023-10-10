@@ -1,7 +1,7 @@
 #include "ft_printf.h"
 
 
-static char    *uitoa_base(unsigned int number, char *base, int b)
+static char    *uitoa_base(unsigned int number, char *base, unsigned int b)
 {
 	char	        *word;
 	int		        len;

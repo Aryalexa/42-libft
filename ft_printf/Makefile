@@ -15,13 +15,13 @@ all:		$(NAME)
 
 #$(NAME):	$(LIBFT) $(OBJS)
 $(NAME):	$(LIBFT) $(OBJS)
-			cpy $(LIBFT) $(NAME)
+			cp $(LIBFT) $(NAME)
 			$(AR) $(NAME) $(OBJS)
 
 bonus:		all
 
 .c.o:
-			$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $(<:.c=.o)
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) 
 
 #$(LIBFT):	
 #			make -C $(LIBFT_PATH) all

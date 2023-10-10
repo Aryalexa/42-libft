@@ -1,27 +1,10 @@
-#include <stdarg.h>
 #include "ft_printf.h"
-
-typedef struct s_conv_specif
-{
-	// "-0# +"
-	int 	minus_rpad; // right pad ' '
-	int 	zero_lpad; // left pad '0' for numbers
-	int 	hash_alt_form; // 0x, 0X
-	int 	space_positive; // : 23:
-	int 	plus_positive;  // :+23:
-
-	int		min_width_lpad; // left pad ' '
-	int		precision; // left pad '0' for numbers (min) / strings (max)
-
-	char	sp;
-}	t_conv_specif;
-
 
 int ft_strcountchr(char* str, char c, size_t n)
 {
-	int len;
-	int i;
-	int count;
+	size_t	len;
+	size_t	i;
+	int		count;
 
 	count = 0;
 	len  = ft_strlen(str);
@@ -52,8 +35,8 @@ t_conv_specif *reset_conversion_specifier(t_conv_specif *cs)
 char	*ft_strndup(const char *s1, size_t n)
 {
 	char	*dup;
-	int		len;
-	int		i;
+	size_t	len;
+	size_t	i;
 
 	len = ft_strlen(s1);
 	if (len < n)
@@ -71,7 +54,7 @@ char	*ft_strndup(const char *s1, size_t n)
 	return (dup);
 }
 
-t_conv_specif *process_cs(t_conv_specif *cs, char *str, int len)
+t_conv_specif *process_cs(t_conv_specif *cs, const char *str, int len)
 {
 	// "-0# +w.prec"
 	char **parts;
@@ -101,7 +84,7 @@ t_conv_specif *process_cs(t_conv_specif *cs, char *str, int len)
 				cs->plus_positive = 1;
 			i++;
 		}
-		cs->min_width_lpad = ft_atoi(parts[0][i]);
+		cs->min_width_lpad = ft_atoi(&parts[0][i]);
 	}
 	if (!parts[1])
 		return (cs);
@@ -136,11 +119,13 @@ int print_value(va_list ap, t_conv_specif *sc)
 	// faltan
 	else
 		ft_putchar_fd('%', 1);
+
+	return (0);
 }
 
 int is_specifier(char c)
 {
-	return (ft_strchr("cspdiuxX%", c));
+	return (ft_strchr("cspdiuxX%", c) != NULL);
 }
 
 // va_start, va_arg, va_copy, va_end
@@ -184,12 +169,12 @@ int	ft_printf(const char *format, ...)
 			sp_len = 0;
 			while (format[sp_len] && !is_specifier(format[sp_len]))
 				sp_len++;
-			if (!format[sp_len] || ft_strcountchr(format, '.', sp_len) > 1)
+			if (!format[sp_len] || ft_strcountchr((char *)format, '.', sp_len) > 1)
 			{
 				// nos tragamos el primer simbolo despues del % (o todos los flags?)
 				// y continuamos (imprimimos hasta el final)
-				ft_putstr_fd(format + 1, 1);
-				return (total_len + ft_strlen(format + 1));
+				ft_putstr_fd((char *)(++format), 1);
+				return (total_len + ft_strlen((char *)format));
 			}
 			// else: next is specifier
 			sc = process_cs(sc, format, sp_len + 1);

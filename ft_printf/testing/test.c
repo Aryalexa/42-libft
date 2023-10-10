@@ -3,7 +3,7 @@
 #include "../ft_printf.h"
 
 
-
+/*
 void test_ft_printf()
 {
 	//ft_printf("hola\n", "jaja\n", "jeje\n");
@@ -95,9 +95,9 @@ void test_ft_printf()
 	printf(" +i :% +i:\n", 23); // :+23: // ' ' is ignored
 
 
-}
+}*/
 
-void prueba_str_avanza(char **str)
+void test_str_pointer_go_forward(char **str)
 {
 	(*str)++;
 	/* test:
@@ -112,14 +112,19 @@ void prueba_str_avanza(char **str)
 	*/
 }
 
+void test_modify_struct(t_conv_specif *cs)
+{
+	printf("test 1\n");
+}
+
 int main()
 {
-	// ft_putstr_fd("-empieza\n", 1);
+	ft_putstr_fd("-empieza\n", 1);
 	// ft_printf("hola\n", "jaja\n", "jeje\n");
 	// printf("%x %X", 2147483648, -13);
 	// print_unsigned_int(2147483648, 1);
-	// ft_putstr_fd("-termina\n", 1);
+	ft_putstr_fd("-termina\n", 1);
 	
-	test_ft_printf();
+	//test_ft_printf();
 
 }
