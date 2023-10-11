@@ -1,5 +1,7 @@
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror $(FT_SAN)
+# FT_SAN = -fsanitize=address
+FT_SAN = 
 AR		= ar -rcs
 RM		= /bin/rm -rf
 

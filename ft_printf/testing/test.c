@@ -3,8 +3,8 @@
 #include "../ft_printf.h"
 
 
-
-void test_ft_printf()
+/*
+void test_real_printf()
 {
 	//ft_printf("hola\n", "jaja\n", "jeje\n");
 	
@@ -37,6 +37,9 @@ void test_ft_printf()
 	printf(".1d :%.1d:\n", 55);//:55:
 	printf(".2d :%.2d:\n", 55);//:55:
 	printf(".3d :%.3d:\n", 55);//:055:
+	printf("s :%s:\n", "hola!");//:hola!:
+	printf(".0s :%.0s:\n", "hola!");//:: - vacio
+	printf(".1s :%.1s:\n", "hola!");//:h:
 	printf(".4s :%.4s:\n", "hola!");//:hola:
 	printf(".5s :%.5s:\n", "hola!");//:hola!:
 	printf(".6s :%.6s:\n", "hola!");//:hola!:
@@ -61,7 +64,7 @@ void test_ft_printf()
 	printf("-0.6s :%-0.6s:\n", "hola");  //:hola: // warning 0 + s, warning 0 ignored
 	printf("-3.1s :%-3.1s:\n", "hola");  //:h  : // warning 0 + s, warning 0 ignored
 	
-	// . + width : join
+	// w. : join
 	printf("4.5d :%4.5d:\n", 457); // :00457:
 	printf("5.5d :%5.5d:\n", 457); // :00457:
 	printf("6.5d :%6.5d:\n", 457); // : 00457:
@@ -95,7 +98,7 @@ void test_ft_printf()
 	printf(" +i :% +i:\n", 23); // :+23: // ' ' is ignored
 
 
-}
+}*/
 
 void test_str_pointer_go_forward(char **str)
 {
@@ -114,7 +117,7 @@ void test_str_pointer_go_forward(char **str)
 
 void test_modify_struct(t_conv_specif *cs)
 {
-	cs->sp = '2';
+	cs->sp = '2'; // al final esto no era asi.....
 
 	// t_conv_specif *cs;
 	// printf("created. sp : ");
@@ -130,26 +133,53 @@ void test_modify_struct(t_conv_specif *cs)
 	// 	printf("%c\n", cs->sp);
 }
 
-int main()
+void my_tests()
 {
 	ft_putstr_fd("-empieza\n", 1);
-	// ft_printf("hola\n", "jaja\n", "jeje\n");
-	// printf("%x %X", 2147483648, -13);
-	// print_unsigned_int(2147483648, 1);
-	ft_putstr_fd("-termina\n", 1);
+
 	
-	//test_ft_printf();
-	t_conv_specif *cs;
-	printf("created. sp : ");
-	if (!cs->sp)
-		printf("NULL\n");
-	else
-		printf("%c\n", cs->sp);
-	test_modify_struct(cs);
-	printf("modified. sp : ");
-	if (!cs->sp)
-		printf("NULL\n");
-	else
-		printf("%c\n", cs->sp);
+	ft_printf("ejemplo 1: hola\n");
+	
+	int a;
+	a = ft_printf("ejemplo 2: h%cla\n", '0');
+	ft_putnbr_fd(a, 1);
+	ft_putstr_fd("\n", 1);
+
+	a = ft_printf("ejemplo 3: h%sla\n", "34");
+	ft_putnbr_fd(a, 1);
+	ft_putstr_fd("\n", 1);
+
+	ft_printf("s :%s:\n", "hola!");//:hola!:
+	ft_printf(".0s :%.0s:\n", "hola!");//:: - vacio
+	ft_printf(".1s :%.1s:\n", "hola!");//:h:
+	ft_printf(".4s :%.4s:\n", "hola!");//:hola:
+	ft_printf(".5s :%.5s:\n", "hola!");//:hola!:
+	ft_printf(".6s :%.6s:\n", "hola!");//:hola!:
+	a = ft_printf("-5.3s :%-05.3s:\n", "hi");  //:hi   :
+	ft_putnbr_fd(a, 1);
+	ft_putstr_fd("\n", 1);
+
+	ft_printf("4.5s :%4.5s:\n", "holacarl"); // :holac:
+	ft_printf("5.5s :%5.5s:\n", "holacarl"); // :holac:
+	a = ft_printf("6.4s :%6.4s:\n", "holacarl"); // :  hola:
+	ft_putnbr_fd(a, 1);
+	ft_putstr_fd("\n", 1);
+
+
+	ft_putstr_fd("-termina\n", 1);
+}
+
+void watch_leaks()
+{
+	system("leaks a.out");
+}
+
+
+int main()
+{
+	//atexit(watch_leaks);
+	//test_real_printf();
+	my_tests();
+	
 
 }

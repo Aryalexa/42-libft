@@ -31,7 +31,7 @@ void print_unsigned_int(unsigned int ui, int fd);
 
 int ft_strcountchr(char* str, char c, size_t n);
 
-t_conv_specif *reset_conversion_specifier(t_conv_specif *cs);
+void init_conversion_specifier(t_conv_specif **cs);
 
 char	*ft_strndup(const char *s1, size_t n);
 
@@ -42,8 +42,7 @@ t_conv_specif *process_cs(t_conv_specif *cs, const char *str, int len);
 /**
  * @returns number of printed chars
 */
-int print_value(va_list ap, t_conv_specif *sc);
-
+int print_value(const char *str, int sp_len, va_list ap);
 int is_specifier(char c);
 
 // va_start, va_arg, va_copy, va_end

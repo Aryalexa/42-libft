@@ -1,12 +1,19 @@
 NAME = test
 SRC = test.c
+LIB = ../libftprintf.a
+OTHER_OBJ = ../ft_printf.o ../utils.o
 
 all:	$(NAME)
 
-$(NAME): $(SRC) $(NAME)
+$(NAME): $(SRC) $(LIB) $(OTHER_OBJ)
 		$(MAKE) -C .. all
-		cp ../libftprintf.a $(NAME)
-		gcc $(SRC) $(NAME)
+		cp $(LIB) $(NAME)
+#		gcc  $(SRC) $(NAME) 
+#		gcc -Wall -Werror -Wextra $(SRC) $(NAME) 
+		gcc -Wall -Werror -Wextra -fsanitize=address -g3 $(SRC) $(NAME) 
+
+$(LIB):
+		$(MAKE) -C .. all
 
 clean:
 		$(MAKE) -C .. clean

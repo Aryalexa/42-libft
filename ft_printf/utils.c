@@ -85,3 +85,42 @@ void print_unsigned_int(unsigned int ui, int fd)
 	else
 		ft_putnbr_fd(ui, fd);
 }
+
+char	*ft_strndup(const char *s1, size_t n)
+{
+	char	*dup;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s1);
+	if (len < n)
+		n = len;
+	dup = (char *)malloc((n + 1) * sizeof(char));
+	if (dup == NULL)
+		return (NULL);
+	i = 0;
+	while (i < n)
+	{
+		dup[i] = s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+int ft_strcountchr(char* str, char c, size_t n)
+{
+	size_t	len;
+	size_t	i;
+	int		count;
+
+	count = 0;
+	len  = ft_strlen(str);
+	if (len < n)
+		n = len;
+	i = 0;
+	while (i < n)
+		if (str[i++] == c)
+			count++;
+	return (count);
+}
