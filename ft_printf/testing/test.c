@@ -55,7 +55,7 @@ void test_real_printf()
 	// -.prec : join
 	printf("-5.3d :%-05.3d:\n", 2);     //:002  :
 	printf("-5.3s :%-05.3s:\n", "hi");  //:hi   :
-	// -0.prec : (0) < (- + .prec)
+	// -0.prec : (0) < (-w + .prec)
 	printf("-0.3d :%-0.3d:\n", 2);	     //:002:  // warning 0 ignored
 	printf("-00.3d :%-00.3d:\n", 2);     //:002: // warning 0 ignored
 	printf("-05.3d :%-05.3d:\n", 2);     //:002  : // warning 0 ignored
@@ -98,6 +98,18 @@ void test_real_printf()
 	printf(" +i :% +i:\n", 23); // :+23: // ' ' is ignored
 
 
+	//pointer
+	int *p;
+	a = 2;
+	p = &a;
+	printf("p :%p:\n", p);      // :0x7ff7b9347760:
+	printf("4p :%4p:\n", p);    // :0x7ff7b9347760:
+	printf("-4p :%-4p:\n", p);  // :0x7ff7b9347760:
+	printf("20p :%20p:\n", p);   //:      0x7ff7b891a760:
+	printf("-20p :%-20p:\n", p); //:0x7ff7b891a760      :
+
+
+
 }*/
 
 void test_str_pointer_go_forward(char **str)
@@ -133,7 +145,7 @@ void test_modify_struct(t_conv_specif *cs)
 	// 	printf("%c\n", cs->sp);
 }
 
-void my_tests()
+void my_tests_1()
 {
 	ft_putstr_fd("-empieza\n", 1);
 
@@ -165,8 +177,91 @@ void my_tests()
 	ft_putnbr_fd(a, 1);
 	ft_putstr_fd("\n", 1);
 
+	int *p;
+	a = 2;
+	p = &a;
+	ft_printf("p :%p:\n", p);      // :0x7ff7b9347760:
+	ft_printf("4p :%4p:\n", p);    // :0x7ff7b9347760:
+	ft_printf("-4p :%-4p:\n", p);  // :0x7ff7b9347760:
+	ft_printf("20p :%20p:\n", p);   //:      0x7ff7b891a760:
+	ft_printf("-20p :%-20p:\n", p); //:0x7ff7b891a760      :
 
-	ft_putstr_fd("-termina\n", 1);
+	ft_putstr_fd("-termina\n", 1); 
+}
+
+void my_tests_2()
+{
+	ft_printf("03d :%03d:\n", 2); // :002:
+	ft_printf("03d :%03d:\n", 0); // :000:
+	ft_printf("03d :%03d:\n", -2); // :-02:
+	ft_printf("00d :%00d:\n", 2); // :2: //0 + w=0 -> nada
+	ft_printf("00d :%00d:\n", 0); // :0: //0 + w=0 -> nada
+	ft_printf("00d :%00d:\n", -2); // :-2: //0 + w=0 -> nada
+	ft_printf(" 03d :% 03d:\n", 4); // : 04:
+	ft_printf("+03d :%+03d:\n", 4); // :+04:
+
+	// ft_printf("i :%i:\n", 14);  // :14:
+	// ft_printf("i :%i:\n", -14); // :-14:
+	// ft_printf("d :%d:\n", 14);  // :14:
+	// ft_printf("u :%u:\n", 14);  // :14:
+	// ft_printf("u :%u:\n", -14); // :4294967282:
+	// ft_printf("x :%x:\n", 14);  // :e:
+	// ft_printf("x :%x:\n", -14); // :fffffff2:
+	// ft_printf("X :%X:\n", 14);  // :E:
+	// ft_printf("pct :%%:\n"); // :%:
+	
+	ft_printf("d :%d:\n", 0);   //:0:
+	ft_printf(".d :%.d:\n", 0);   //::
+	ft_printf(".0d :%.0d:\n", 0); //::
+	ft_printf("5.0d :%5.0d:\n", 0); //:     :
+	ft_printf(".1d :%.1d:\n", 0); //:0:
+	ft_printf(".0d :%.0d:\n", 55);//:55:
+	ft_printf(".d :%.d:\n", 55);  //:55:
+	ft_printf(".1d :%.1d:\n", 55);//:55:
+	ft_printf(".2d :%.2d:\n", 55);//:55:
+	ft_printf(".3d :%.3d:\n", 55);//:055:
+	ft_printf("04d :%04d:\n", -55); //:-055:
+	ft_printf(".4d :%.4d:\n", -55); //:-0055:
+	ft_printf(".4d :%.4d:\n", 0);   //:0000:
+	ft_printf(".4d :%.4d:\n", 55);  //:0055:
+	ft_printf("04d :%04d:\n", 55);  //:0055:
+	// -0 : 0 < -
+	ft_printf("-03d :%-03d:\n", 2);	 //:2  : // warning 0 ignored
+	ft_printf("--03d :%-03d:\n", 2);	 //:2  : // warning 0 ignored
+	// 0.prec : 0 < .prec
+	ft_printf("0.3d :%0.3d:\n", 2);	 //:002: 
+	ft_printf("04.3d :%04.3d:\n", 2);	 //: 002:
+	// -.prec : join
+	ft_printf("-05.3d :%-05.3d:\n", 2);     //:002  :
+	ft_printf("-5.3d :%-5.3d:\n", -2);      //:-002 :
+	// -0.prec : (0) < (-w + .prec)
+	ft_printf("-0.3d :%-0.3d:\n", 2);	     //:002:  // warning 0 ignored
+	ft_printf("-00.3d :%-00.3d:\n", 2);     //:002: // warning 0 ignored
+	ft_printf("-05.3d :%-05.3d:\n", 2);     //:002  : // warning 0 ignored
+	// w. : join
+	ft_printf("4.5d :%4.5d:\n", 457); // :00457:
+	ft_printf("5.5d :%5.5d:\n", 457); // :00457:
+	ft_printf("6.5d :%6.5d:\n", 457); // : 00457:
+
+	// ' ' (space) : blank before positive number (d,i)
+	ft_printf(" d :% d:\n", 23);   // : 23:
+	ft_printf("  d :%  i:\n", 23); // : 23:
+	ft_printf(" d :% i:\n", -23);  // :-23:
+	// + sign always: + for pos, - for neg (d,i). 
+	ft_printf("+i :%+i:\n", 23);   // :+23:
+	ft_printf("++i :%++i:\n", 23); // :+23:
+	ft_printf("+d :%+d:\n", -23);  // :-23:
+	// + > ' '
+	ft_printf("+ i :%+ i:\n", 23); // :+23: // ' ' is ignored
+	ft_printf(" +i :% +i:\n", 23); // :+23: // ' ' is ignored
+	
+	// prec diuxX
+	// prec=0, num=0
+	ft_printf(".0i :%.0i:\n", 0); //::
+	ft_printf("5.0i :%5.0i:\n", 0); //:     :
+	ft_printf("5.0u :%5.0u:\n", 0); //:     :
+	ft_printf("5.0x :%5.0x:\n", 0); //:     :
+	ft_printf("5.0X :%5.0X:\n", 0); //:     :
 }
 
 void watch_leaks()
@@ -179,7 +274,7 @@ int main()
 {
 	//atexit(watch_leaks);
 	//test_real_printf();
-	my_tests();
+	my_tests_2();
 	
 
 }

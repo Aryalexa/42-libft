@@ -7,7 +7,7 @@ RM		= /bin/rm -rf
 
 NAME	= libftprintf.a
 
-SRCS	= ft_printf.c utils.c
+SRCS	= ft_printf.c utils.c ft_number_to_str.c util_prints.c
 OBJS	= $(SRCS:.c=.o)
 
 LIBFT_PATH  = ./libft

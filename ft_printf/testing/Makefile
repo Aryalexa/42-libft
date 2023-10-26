@@ -1,7 +1,7 @@
 NAME = test
 SRC = test.c
 LIB = ../libftprintf.a
-OTHER_OBJ = ../ft_printf.o ../utils.o
+OTHER_OBJ = ../ft_printf.o ../utils.o ../util_prints.o
 
 all:	$(NAME)
 
