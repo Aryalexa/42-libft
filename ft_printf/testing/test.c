@@ -150,14 +150,14 @@ void my_tests_1()
 	ft_putstr_fd("-empieza\n", 1);
 
 	
-	ft_printf("ejemplo 1: hola\n");
+	ft_printf("ejemplo 1: hola\n"); // hola
 	
 	int a;
-	a = ft_printf("ejemplo 2: h%cla\n", '0');
+	a = ft_printf("ejemplo 2: h%cla\n", '0'); // h0la
 	ft_putnbr_fd(a, 1);
 	ft_putstr_fd("\n", 1);
 
-	a = ft_printf("ejemplo 3: h%sla\n", "34");
+	a = ft_printf("ejemplo 3: h%sla\n", "34"); //  h34la
 	ft_putnbr_fd(a, 1);
 	ft_putstr_fd("\n", 1);
 
@@ -175,6 +175,12 @@ void my_tests_1()
 	ft_printf("5.5s :%5.5s:\n", "holacarl"); // :holac:
 	a = ft_printf("6.4s :%6.4s:\n", "holacarl"); // :  hola:
 	ft_putnbr_fd(a, 1);
+	ft_putstr_fd("\n", 1);
+
+	ft_printf("3c :%3c:\n", 'a');  //:  a:
+	ft_printf("-3c :%-3c:\n", 'a');//:a  :
+	a = printf("**-3c :%-3c:\n", '\0');//:a  :
+	ft_putnbr_fd(a, 1); // 12
 	ft_putstr_fd("\n", 1);
 
 	int *p;
@@ -262,6 +268,31 @@ void my_tests_2()
 	ft_printf("5.0u :%5.0u:\n", 0); //:     :
 	ft_printf("5.0x :%5.0x:\n", 0); //:     :
 	ft_printf("5.0X :%5.0X:\n", 0); //:     :
+
+	ft_printf("3c :%3c:\n", 'a');  //:  a:
+	ft_printf("-3c :%-3c:\n", 'a');//:a  :
+
+	ft_printf("3pct :%3%:\n");    //:  %:
+	ft_printf("-3pct :%-3%:\n");  //:%  :
+	ft_printf("-#3pct :%-#3%:\n");//:%  :
+	ft_printf("#3pct :%#3%:\n");  //:  %:
+
+
+}
+
+void my_tests_3()
+{
+	int a;
+	a = ft_printf(":%c:", '0');ft_putstr_fd("\n", 1); // :0:
+	ft_putnbr_fd(a, 1); ft_putstr_fd("\n", 1); // 1
+	a = ft_printf(": %c:", '0' - 256);ft_putstr_fd("\n", 1); //: 0:
+	ft_putnbr_fd(a, 1); ft_putstr_fd("\n", 1); //2
+	a = ft_printf(" %c %c %c ", '0', 0, '1');ft_putstr_fd("\n", 1);
+	ft_putnbr_fd(a, 1); ft_putstr_fd("\n", 1); // 7
+	a = ft_printf(" %c %c %c ", '2', '1', 0);ft_putstr_fd("\n", 1);
+	ft_putnbr_fd(a, 1); ft_putstr_fd("\n", 1); // 7
+	a = ft_printf(" %c %c %c ", 0, '1', '2');ft_putstr_fd("\n", 1);
+	ft_putnbr_fd(a, 1); ft_putstr_fd("\n", 1); // 7
 }
 
 void watch_leaks()
@@ -274,7 +305,9 @@ int main()
 {
 	//atexit(watch_leaks);
 	//test_real_printf();
-	my_tests_2();
+	// my_tests_1();
+	// my_tests_2();
+	my_tests_3();
 	
 
 }

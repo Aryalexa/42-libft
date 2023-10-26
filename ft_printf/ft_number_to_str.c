@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_number_to_str.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macastro <macastro@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/26 20:22:34 by macastro          #+#    #+#             */
+/*   Updated: 2023/10/26 20:25:30 by macastro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static int	ft_nbrlen(long long n, int b)
@@ -17,16 +29,15 @@ static int	ft_nbrlen(long long n, int b)
 	return (len);
 }
 
-
 /**
  * returns new string with the number in base _base_
  * if number is integer, see ft_itoa
 */
-char    *ft_number_to_base(long long n, char *base, int b)
+char	*ft_number_to_base(long long n, char *base, int b)
 {
-	int		len;
-	char	*word;
-	unsigned long long		num;
+	int					len;
+	char				*word;
+	unsigned long long	num;
 
 	len = ft_nbrlen(n, b);
 	word = (char *)ft_calloc(len + 1, 1);
@@ -49,3 +60,42 @@ char    *ft_number_to_base(long long n, char *base, int b)
 	}
 	return (word);
 }
+
+void	ft_putchar_times(char c, int times, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (i < times)
+	{
+		ft_putchar_fd(c, fd);
+		i++;
+	}
+}
+
+void	ft_putstr_limit(char *s, int max_chars, int fd)
+{
+	write(fd, s, max_chars);
+}
+
+// char	*ft_strndup(const char *s1, size_t n)
+// {
+// 	char	*dup;
+// 	size_t	len;
+// 	size_t	i;
+
+// 	len = ft_strlen(s1);
+// 	if (len < n)
+// 		n = len;
+// 	dup = (char *)malloc((n + 1) * sizeof(char));
+// 	if (dup == NULL)
+// 		return (NULL);
+// 	i = 0;
+// 	while (i < n)
+// 	{
+// 		dup[i] = s1[i];
+// 		i++;
+// 	}
+// 	dup[i] = '\0';
+// 	return (dup);
+// }

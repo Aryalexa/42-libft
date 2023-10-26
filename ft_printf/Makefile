@@ -1,13 +1,15 @@
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror $(FT_SAN)
+
 # FT_SAN = -fsanitize=address
 FT_SAN = 
+
 AR		= ar -rcs
 RM		= /bin/rm -rf
 
 NAME	= libftprintf.a
 
-SRCS	= ft_printf.c utils.c ft_number_to_str.c util_prints.c
+SRCS	= ft_printf.c ft_number_to_str.c util_cs.c util_general.c util_numflags.c util_print1.c util_print2.c 
 OBJS	= $(SRCS:.c=.o)
 
 LIBFT_PATH  = ./libft

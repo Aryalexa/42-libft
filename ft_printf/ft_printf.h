@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macastro <macastro@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/26 18:25:22 by macastro          #+#    #+#             */
+/*   Updated: 2023/10/26 20:24:58 by macastro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include "libft/libft.h"
-#include <stdarg.h>
+# include "libft/libft.h"
+# include <stdarg.h>
 
 /**
  * Behavior %"-0# +W.prec"specifier
@@ -28,70 +40,46 @@
 */
 typedef struct s_conv_specif
 {
-	// "-0# +"
-	int 	minus_rpad; // right padding ' '
-	int 	zero_lpad; // left padding '0' for numbers
-	int 	hash_alt_form; // 0x, 0X
-	int 	space_positive; // : 23:
-	int 	plus_positive;  // :+23:
-
-	int		min_width_lpad; // left pad ' '
-	int		precision; // left padding: '0' for numbers (min) / strings (max)
-
+	int		minus_rpad;
+	int		zero_lpad;
+	int		hash_alt_form;
+	int		space_positive;
+	int		plus_positive;
+	int		min_width_lpad;
+	int		precision;
 	char	sp;
 }	t_conv_specif;
 
-
 // to libft
-char	*ft_number_to_base(long long n, char *base, int b);
+char			*ft_number_to_base(long long n, char *base, int b);
+void			ft_putchar_times(char c, int times, int fd);
+void			ft_putstr_limit(char *s, int max_chars, int fd);
 //char *ft_strndup(const char *s1, size_t n);
 
-// utils
-char	*number_to_strhex(unsigned long long number, int mayus);
-char	*number_to_str(long long number);
-int ft_strcountchr(char* str, char c, size_t n);
+// util_cs
+t_conv_specif	*process_cs(t_conv_specif *cs, const char *str, int len);
 
-//util prints
-int print_str(char *s, t_conv_specif sc, int fd);
-int print_pointer(void *pointer_addr, t_conv_specif sc, int fd);
-int print_signed_number(long number, t_conv_specif sc, int fd);
-int print_unsigned_number(unsigned int number, t_conv_specif sc, int fd);
+// util_general
+int				ft_countchr(char *str, char c, size_t n);
+char			*number_to_strhex(unsigned long long number, int mayus);
+char			*number_to_str(long long number);
 
-// no need? in same 
-// void init_conversion_specifier(t_conv_specif **cs);
-// t_conv_specif *process_cs(t_conv_specif *cs, const char *str, int len);
-// int is_specifier(char c);
-/**
- * @returns number of printed chars
-*/
-// int print_value(const char *str, int sp_len, va_list ap);
+// util_numflags
+char			get_sign_char(long n, t_conv_specif cs);
+char			*get_num_as_str(unsigned int number, t_conv_specif sc);
+int				process_numflags(char *str, char sign,
+					t_conv_specif sc, int *len);
+// util_print1
+void			print_padding(int left, t_conv_specif sc, int *pad, int len);
+int				print_char(char c, t_conv_specif sc, int fd);
+int				print_str(char *s, t_conv_specif sc, int fd);
 
+// util_print2
+int				print_pointer(void *pointer_addr, t_conv_specif sc, int fd);
+int				print_signed_number(long number, t_conv_specif sc, int fd);
+int				print_unumber(unsigned int number, t_conv_specif sc, int fd);
+int				print_uhex(unsigned int number, t_conv_specif sc, int fd);
 
-
-// va_start, va_arg, va_copy, va_end
-// conversions: cspdiuxX %
-/**
- * uso de va: recoges format y con las macros te mueves por "..."
- * 
- * 
- * - variable global para los tipos de formato?? no estoy usando nada parecido
- * - %x y %X son tipo unsigned int
- * 
- * - los usuaros de la libreria de ft_printf pueden acceder a las gfunciones auxiliares?
- * omg, como le hago???
- * 
- * - como se tratan los errores? le dejo fallar, return null/neg, lanzo error???
- * 
- * 
- * Each conversion espcification has:
- * start: %
- * in between: 
- * - zero or more flags ("-0# +")
- * - optional minimum field width
- * - optional precision (.prec)
- * end: a conversion specifier (cspdiuxX %)
- * 
-*/
-int	ft_printf(const char *format, ...);
+int				ft_printf(const char *format, ...);
 
 #endif
