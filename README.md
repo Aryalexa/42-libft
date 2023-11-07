@@ -1,11 +1,16 @@
-# C Projects
+# libft
+C library. It includes: remade libc functions and custom functions.
 
-## libft
-C library. Includes: remade libc functions and custom functions.
+## Files
+- Makefile
+- libft.h header
+- C files
 
-libft.h
+## Requirements
+- A library file `libft.a` should be created within the root directory using `ar` when running the Makefile.
+- The following functions
 
-#### Part 1
+#### 🔹Functions - Part 1
 function from libc
 
 ft_atoi.c
@@ -32,7 +37,7 @@ ft_strrchr.c
 ft_tolower.c
 ft_toupper.c
 
-#### Part 2
+#### 🔹Functions - Part 2
 ft_itoa.c
 ft_putchar_fd.c
 ft_putendl_fd.c
@@ -45,7 +50,7 @@ ft_strmapi.c
 ft_strtrim.c
 ft_substr.c
 
-#### Bonus
+#### 🔹Functions - Bonus
 ft_lstadd_back.c
 ft_lstadd_front.c
 ft_lstclear.c
@@ -56,13 +61,9 @@ ft_lstmap.c
 ft_lstnew.c
 ft_lstsize.c
 
-## printf
-printf from libc
-Supported conversions: cspdiuxX %
-What we learnt: variadic functions in C, va_start, va_arg, va_copy, va_end
+## How to use a C library
+You are going to need the library file `libft.a` and the header `libft.h` by its side.
 
-
-how to run
-- given a main in ft_ptinf.c and libft.a is present
-``gcc ft_printf.c utils.c libft.a``
-- more info: https://linux.die.net/man/3/printf
+How to run your own program using the library:
+- given a main in a main.c file
+```gcc main.c other_files.c path_of_lib/libft.a```
