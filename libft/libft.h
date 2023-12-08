@@ -52,6 +52,11 @@ int		ft_atoi(const char *str);
 
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
+//new
+char	*ft_strndup(const char *s, size_t n);
+int		ft_isspace(char c);
+int		ft_countchr(const char *str, char c, size_t n);
+int		ft_min_nbr(int a, int b);
 
 /**
  * PART 2
@@ -68,6 +73,9 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+// new
+void	ft_putstr_limit_fd(char *s, int max_chars, int fd);
+void	ft_putchar_times_fd(char c, int times, int fd);
 
 /**
  * BONUS - lists

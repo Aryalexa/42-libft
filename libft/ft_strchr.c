@@ -22,7 +22,7 @@
  * or NULL if the character does not appear in the string.
 */
 char	*ft_strchr(const char *s, int c)
-{	
+{
 	int	i;
 
 	i = 0;

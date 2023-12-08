@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 20:09:09 by macastro          #+#    #+#             */
-/*   Updated: 2023/06/13 20:09:12 by macastro         ###   ########.fr       */
+/*   Created: 2023/06/21 22:50:05 by macastro          #+#    #+#             */
+/*   Updated: 2023/06/21 22:50:07 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-/*
-	The atoi() function converts the initial portion of the string pointed to
-    by str to int representation.
-*/
-int	ft_atoi(const char *str)
+char	*ft_strndup(const char *s, size_t n)
 {
-	int	i;
-	int	number;
-	int	sign;
+	char			*res;
+	unsigned int	i;
 
-	number = 0;
-	sign = 1;
 	i = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	res = malloc(sizeof(char) * (n + 1));
+	if (!res)
+		return (NULL);
+	while (i < n)
 	{
-		if (str[i] == '-')
-			sign = sign * (-1);
+		res[i] = s[i];
 		i++;
 	}
-	while (ft_isdigit(str[i]))
-	{
-		number = number * 10 + sign * (str[i] - '0');
-		i++;
-	}
-	return (number);
+	res[i] = '\0';
+	return (res);
 }

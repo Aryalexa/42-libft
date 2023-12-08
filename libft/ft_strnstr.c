@@ -24,7 +24,7 @@
 	character of the first occurrence of needle is returned.
 */
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
-{	
+{
 	size_t	len_needle;
 	size_t	len_haystack;
 	size_t	i;

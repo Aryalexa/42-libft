@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putchar_times_fd.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 20:09:09 by macastro          #+#    #+#             */
-/*   Updated: 2023/06/13 20:09:12 by macastro         ###   ########.fr       */
+/*   Created: 2023/06/12 15:49:38 by macastro          #+#    #+#             */
+/*   Updated: 2023/06/12 15:49:40 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-/*
-	The atoi() function converts the initial portion of the string pointed to
-    by str to int representation.
-*/
-int	ft_atoi(const char *str)
+void	ft_putchar_times_fd(char c, int times, int fd)
 {
 	int	i;
-	int	number;
-	int	sign;
 
-	number = 0;
-	sign = 1;
 	i = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (i < times)
 	{
-		if (str[i] == '-')
-			sign = sign * (-1);
+		ft_putchar_fd(c, fd);
 		i++;
 	}
-	while (ft_isdigit(str[i]))
-	{
-		number = number * 10 + sign * (str[i] - '0');
-		i++;
-	}
-	return (number);
 }

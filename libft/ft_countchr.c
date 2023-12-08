@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_countchr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,33 +9,22 @@
 /*   Updated: 2023/06/13 20:09:12 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-/*
-	The atoi() function converts the initial portion of the string pointed to
-    by str to int representation.
-*/
-int	ft_atoi(const char *str)
+int	ft_countchr(const char *str, char c, size_t n)
 {
-	int	i;
-	int	number;
-	int	sign;
+	size_t	len;
+	size_t	i;
+	int		count;
 
-	number = 0;
-	sign = 1;
+	count = 0;
+	len = ft_strlen(str);
+	if (len < n)
+		n = len;
 	i = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = sign * (-1);
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		number = number * 10 + sign * (str[i] - '0');
-		i++;
-	}
-	return (number);
+	while (i < n)
+		if (str[i++] == c)
+			count++;
+	return (count);
 }
