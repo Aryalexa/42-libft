@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: macastro <macastro@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:11:45 by macastro          #+#    #+#             */
-/*   Updated: 2023/06/13 13:11:46 by macastro         ###   ########.fr       */
+/*   Updated: 2023/12/23 18:03:38 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	while (i <= len_haystack - len_needle && i < len)
 	{
 		j = 0;
-		while (haystack[i + j] == needle[j] && needle[j] != '\0' && i + j < len)
+		while (haystack[i + j] == needle[j]
+			&& needle[j] != '\0' && i + j < len)
 		{
 			j++;
 		}
