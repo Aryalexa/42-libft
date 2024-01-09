@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 22:50:05 by macastro          #+#    #+#             */
-/*   Updated: 2023/06/21 22:50:07 by macastro         ###   ########.fr       */
+/*   Created: 2023/09/12 16:33:50 by macastro          #+#    #+#             */
+/*   Updated: 2023/09/12 16:34:18 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-char	*ft_strndup(const char *str, int n)
-{
-	char	*res;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-	if (n < 0)
-		n = ft_strlen(str);
-	res = (char *)malloc(sizeof(char) * (n + 1));
-	if (!res)
-		return (NULL);
-	ft_strlcpy(res, str, n + 1);
-	return (res);
-}
+#endif

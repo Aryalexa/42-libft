@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "ft_printf.h"
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -55,7 +56,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strdup(const char *s1);
-char	*ft_strndup(const char *s, size_t n);
+char	*ft_strndup(const char *str, int n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -63,6 +64,8 @@ char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 int		ft_countchr(const char *str, char c, size_t n);
+char	*ft_strjoin_realloc(char **dst, const char *src);
+char	*ft_str_realloc(char *str, size_t size, int offset);
 
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
@@ -101,7 +104,6 @@ int		print_unsigned_number(unsigned int number, t_cs sc);
 int		print_unsigned_hex(unsigned int number, t_cs sc);
 int		ft_printf(const char *format, ...);
 
-
 /**
  * list methods
 */
@@ -128,5 +130,9 @@ int		ft_deque_count(t_deque *dq);
 void	ft_clear_deque(t_deque **dq, void (*del)(void *));
 void	ft_iter_deque(t_deque *dq, void (*f)(void *));
 
+/**
+ * get next line
+*/
+char	*get_next_line(int fd);
 
 #endif

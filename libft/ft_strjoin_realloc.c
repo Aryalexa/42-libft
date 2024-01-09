@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin_realloc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 22:50:05 by macastro          #+#    #+#             */
-/*   Updated: 2023/06/21 22:50:07 by macastro         ###   ########.fr       */
+/*   Created: 2023/10/04 19:47:46 by macastro          #+#    #+#             */
+/*   Updated: 2023/10/04 19:47:47 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(const char *str, int n)
+/**
+ * It reallocs the string `dst` to make it big enough for the inplace join.
+*/
+char	*ft_strjoin_realloc(char **dst, const char *src)
 {
-	char	*res;
+	int		len_d;
+	int		len_s;
 
-	if (n < 0)
-		n = ft_strlen(str);
-	res = (char *)malloc(sizeof(char) * (n + 1));
-	if (!res)
+	len_d = ft_strlen(*dst);
+	len_s = ft_strlen(src);
+	*dst = ft_str_realloc(*dst, len_d + len_s + 1, 0);
+	if (!*dst)
 		return (NULL);
-	ft_strlcpy(res, str, n + 1);
-	return (res);
+	ft_strlcpy(*dst + len_d, src, len_s + 1);
+	return (*dst);
 }
