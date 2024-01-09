@@ -1,10 +1,9 @@
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
-LIB		= ar -rcs
+AR		= ar -rcs
 RM		= /bin/rm -f
 
 NAME	= libft.a
-
 INCLUDE	= libft.h
 SRCS	= ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_tolower.c ft_toupper.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
@@ -15,29 +14,29 @@ SRCS	= ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 			ft_split.c ft_strmapi.c ft_striteri.c \
 			ft_putstr_limit_fd.c ft_putchar_times_fd.c ft_strndup.c \
-			ft_isspace.c ft_countchr.c ft_min_nbr.c
+			ft_isspace.c ft_countchr.c ft_min_nbr.c \
+			ft_lst_1.c ft_lst_2.c \
+			ft_deque_1.c ft_deque_2.c \
+			ft_printf.c ft_printf_aux.c ft_printf_csp.c \
+			ft_printf_nbr.c ft_printf_ntoa.c ft_printf_ptr.c ft_printf_str.c
+
+
 OBJS	= $(SRCS:.c=.o)
-BONUS_S	= ft_lstsize.c ft_lstlast.c ft_lstadd_front.c ft_lstadd_back.c \
-			ft_lstnew.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-BONUS_O	= $(BONUS_S:.c=.o)
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS) $(INCLUDE)
-			$(LIB) $(NAME) $(OBJS)
-
-bonus:		$(NAME) $(BONUS_O)
-			$(LIB) $(NAME) $(BONUS_O)
+			$(AR) $(NAME) $(OBJS)
 
 .c.o:
 			$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $(<:.c=.o)
 
 clean:
-			$(RM) $(OBJS) $(BONUS_O)
+			$(RM) $(OBJS)
 
 fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re

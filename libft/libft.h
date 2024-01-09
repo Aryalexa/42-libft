@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include "ft_printf.h"
 
 typedef struct s_list
 {
@@ -24,63 +25,86 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-/**
- * PART 1
-*/
+typedef struct s_node
+{
+	struct s_node	*prev;
+	void			*content;
+	struct s_node	*next;
+}	t_node;
+
+typedef struct s_deque
+{
+	t_node	*head;
+	t_node	*rear;
+}	t_deque;
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(char c);
+int		ft_isspace(char c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 int		ft_strncmp(char *s1, char *s2, size_t n);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char	*ft_strdup(const char *s1);
+char	*ft_strndup(const char *s, size_t n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);
+char	**ft_split(char const *s, char c);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+int		ft_countchr(const char *str, char c, size_t n);
+
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-int		ft_atoi(const char *str);
-
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_strdup(const char *s1);
-//new
-char	*ft_strndup(const char *s, size_t n);
-int		ft_isspace(char c);
-int		ft_countchr(const char *str, char c, size_t n);
+
+int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
 int		ft_min_nbr(int a, int b);
 
 /**
- * PART 2
+ * print methods
 */
-
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strtrim(char const *s1, char const *set);
-char	**ft_split(char const *s, char c);
-char	*ft_itoa(int n);
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-// new
 void	ft_putstr_limit_fd(char *s, int max_chars, int fd);
 void	ft_putchar_times_fd(char c, int times, int fd);
 
-/**
- * BONUS - lists
-*/
+t_cs	*read_csp(const char *str, int *i);
+char	*ft_number_to_base(unsigned long long n, char *base, int b);
+char	*number_to_strhex(unsigned long long number, int mayus);
+char	*number_to_strdec(long long number);
+void	print_padding(int left, t_cs sc, int *pad, int len);
+int		process_numflags(char *str, char sign,
+			t_cs sc, int *len);
+int		print_char(char c, t_cs sc, int fd);
+int		print_str(char *s, t_cs sc, int fd);
+int		print_pointer(void *pointer_addr, t_cs sc);
+int		print_signed_number(long number, t_cs sc, int fd);
+int		print_unsigned_number(unsigned int number, t_cs sc);
+int		print_unsigned_hex(unsigned int number, t_cs sc);
+int		ft_printf(const char *format, ...);
 
+
+/**
+ * list methods
+*/
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -90,5 +114,19 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/**
+ * deque methods
+*/
+t_node	*ft_new_node(t_node *prev, void *content, t_node *next);
+t_deque	*ft_new_deque(void);
+void	ft_append(t_deque **dq, void *new_content);
+void	ft_append_left(t_deque **dq, void *new_content);
+void	*ft_pop_left(t_deque **dq);
+void	*ft_pop(t_deque **dq);
+int		ft_deque_count(t_deque *dq);
+void	ft_clear_deque(t_deque **dq, void (*del)(void *));
+void	ft_iter_deque(t_deque *dq, void (*f)(void *));
+
 
 #endif

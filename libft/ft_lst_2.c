@@ -1,16 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lst_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 19:46:29 by macastro          #+#    #+#             */
-/*   Updated: 2023/10/04 19:46:30 by macastro         ###   ########.fr       */
+/*   Created: 2023/10/04 19:45:52 by macastro          #+#    #+#             */
+/*   Updated: 2023/10/04 19:45:56 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/**
+ * Deletes and frees the given element and every successor of that element,
+ * using the function ’del’ and free(3). Finally, the pointer to the list must
+ * be set to NULL.
+*/
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*cur;
+	t_list	*next;
+
+	if (!*lst)
+		return ;
+	cur = *lst;
+	while (cur)
+	{
+		next = cur->next;
+		ft_lstdelone(cur, del);
+		cur = next;
+	}
+	*lst = 0;
+}
+
+/**
+ * It takes a node 'lst' as parameter  and free its memory using 
+ * the function 'del' given as parameter, it also frees the node.
+ * The memory of 'next' is not liberated.
+ * 
+ * @param lst the node to free
+ * @param del pointer to a funtion that frees the content of the node
+ * 
+*/
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+	if (!lst)
+		return ;
+	del(lst->content);
+	free(lst);
+}
+
+/**
+ * Iterates the list ’lst’ and applies the function ’f’ to the content of
+ * each element.
+*/
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	if (!f)
+		return ;
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
+}
 
 /**
  * Iterates the list ’lst’ and applies the function ’f’ to the content of
