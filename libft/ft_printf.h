@@ -17,7 +17,7 @@
 
 # define FLAG		"-+#0 *.0123456789"
 # define SPECS		"cspdiuxX%"
-# define HEXMAX		"0123456789ABCDEF"
+# define HEXMAY		"0123456789ABCDEF"
 # define HEXMIN 	"0123456789abcdef"
 
 /**

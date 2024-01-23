@@ -30,11 +30,11 @@ static int	count_words(const char *s, char c)
 }
 
 /**
- * duplicate the split ending with 'c' pointed by 'src' on the 
+ * duplicate the string ending with 'c' pointed by 'src' on the 
  * specified address 'dst'.
  * @return the len of the duplicated split, returns -1 if memory fails
 */
-static int	ft_dupsplit(char **dst, const char *src, char c)
+static int	ft_dupstop(char **dst, const char *src, char c)
 {
 	int	len;
 
@@ -83,7 +83,7 @@ char	**ft_split(char const *s, char c)
 			s++;
 		if (*s)
 		{
-			wj_len = ft_dupsplit(&dirs[dir_j++], s, c);
+			wj_len = ft_dupstop(&dirs[dir_j++], s, c);
 			if (wj_len < 0)
 			{
 				free_strlst(dirs);
@@ -94,4 +94,14 @@ char	**ft_split(char const *s, char c)
 	}
 	dirs[dir_j] = 0;
 	return (dirs);
+}
+
+int	ft_count_arrstr(char **words)
+{
+	int	i;
+
+	i = 0;
+	while (words[i])
+		i++;
+	return (i);
 }

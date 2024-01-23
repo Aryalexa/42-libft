@@ -67,7 +67,7 @@ char	*number_to_strhex(unsigned long long number, int mayus)
 	char		*addr_str;
 
 	if (mayus)
-		addr_str = ft_number_to_base(number, HEXMAX, 16);
+		addr_str = ft_number_to_base(number, HEXMAY, 16);
 	else
 		addr_str = ft_number_to_base(number, HEXMIN, 16);
 	return (addr_str);

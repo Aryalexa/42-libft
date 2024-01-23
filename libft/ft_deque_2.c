@@ -36,7 +36,7 @@ void	ft_clear_deque(t_deque **dq, void (*del)(void *))
 /**
  * Pop left
  * It gets the head node, deletes it and return its content.
- * 
+ * The deque must have been initialized with new or NULL
 */
 void	*ft_pop_left(t_deque **dq)
 {
@@ -44,7 +44,7 @@ void	*ft_pop_left(t_deque **dq)
 	t_node	*new_head;
 	void	*content;
 
-	if (!*dq)
+	if (!*dq || (*dq)->size == 0)
 		return (NULL);
 	popped_head = (*dq)->head;
 	content = popped_head->content;
@@ -56,13 +56,14 @@ void	*ft_pop_left(t_deque **dq)
 	(*dq)->head = new_head;
 	popped_head->next = NULL;
 	free(popped_head);
+	(*dq)->size--;
 	return (content);
 }
 
 /**
  * Pop
  * It gets the rear node, deletes it and return its content.
- * 
+ * The deque must have been initialized with new or NULL
 */
 void	*ft_pop(t_deque **dq)
 {
@@ -70,7 +71,7 @@ void	*ft_pop(t_deque **dq)
 	t_node	*new_rear;
 	void	*content;
 
-	if (!*dq)
+	if (!*dq || (*dq)->size == 0)
 		return (NULL);
 	popped_rear = (*dq)->rear;
 	content = popped_rear->content;
@@ -82,6 +83,7 @@ void	*ft_pop(t_deque **dq)
 	(*dq)->rear = new_rear;
 	popped_rear->prev = NULL;
 	free(popped_rear);
+	(*dq)->size--;
 	return (content);
 }
 

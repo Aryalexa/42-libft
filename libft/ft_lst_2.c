@@ -107,3 +107,18 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (newlst);
 }
+
+int	ft_lstindex(t_list *lst, void *content, int *(*cmp)(void *, void *))
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		if (cmp(lst->content, content) == 0)
+			return (i);
+		i++;
+		lst = lst->next;
+	}
+	return (-1);
+}

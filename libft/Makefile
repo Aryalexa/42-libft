@@ -19,9 +19,9 @@ SRCS	= ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_deque_1.c ft_deque_2.c \
 			ft_printf.c ft_printf_aux.c ft_printf_csp.c \
 			ft_printf_nbr.c ft_printf_ntoa.c ft_printf_ptr.c ft_printf_str.c \
-			get_next_line.c ft_strjoin_realloc.c ft_str_realloc.c 
-
-
+			ft_printf_utils.c \
+			get_next_line.c ft_strjoin_realloc.c ft_str_realloc.c \
+			ft_dict_is1.c ft_dict_is2.c
 OBJS	= $(SRCS:.c=.o)
 
 all:		$(NAME)

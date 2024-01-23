@@ -44,12 +44,14 @@ t_deque	*ft_new_deque(void)
 		return (NULL);
 	dq->head = NULL;
 	dq->rear = NULL;
+	dq->size = 0;
 	return (dq);
 }
 
 /**
  * Append
  * It adds new element at the end of the deque.
+ * The deque must have been initialized with new or NULL
 */
 void	ft_append(t_deque **dq, void *new_content)
 {
@@ -61,7 +63,8 @@ void	ft_append(t_deque **dq, void *new_content)
 	if (!*dq)
 	{
 		*dq = ft_new_deque();
-		return ;
+		if (!*dq)
+			return ;
 	}
 	rear = (*dq)->rear;
 	new_node = ft_new_node(rear, new_content, NULL);
@@ -70,11 +73,13 @@ void	ft_append(t_deque **dq, void *new_content)
 	else
 		(*dq)->head = new_node;
 	(*dq)->rear = new_node;
+	(*dq)->size++;
 }
 
 /**
  * Append left.
- * It adds new element at the beginning of the deque.
+ * It adds a new element at the beginning of the deque.
+ * The deque must have been initialized with new or NULL
 */
 void	ft_append_left(t_deque **dq, void *new_content)
 {
@@ -86,7 +91,8 @@ void	ft_append_left(t_deque **dq, void *new_content)
 	if (!dq)
 	{
 		*dq = ft_new_deque();
-		return ;
+		if (!*dq)
+			return ;
 	}
 	head = (*dq)->head;
 	new_node = ft_new_node(NULL, new_content, head);
@@ -95,6 +101,7 @@ void	ft_append_left(t_deque **dq, void *new_content)
 	else
 		(*dq)->rear = new_node;
 	(*dq)->head = new_node;
+	(*dq)->size++;
 }
 
 /**
@@ -102,15 +109,5 @@ void	ft_append_left(t_deque **dq, void *new_content)
 */
 int	ft_deque_count(t_deque *dq)
 {
-	int		count;
-	t_node	*cur;
-
-	count = 0;
-	cur = dq->head;
-	while (cur)
-	{
-		count++;
-		cur = cur->next;
-	}
-	return (count);
+	return (dq->size);
 }

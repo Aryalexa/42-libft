@@ -20,25 +20,6 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
-typedef struct s_node
-{
-	struct s_node	*prev;
-	void			*content;
-	struct s_node	*next;
-}	t_node;
-
-typedef struct s_deque
-{
-	t_node	*head;
-	t_node	*rear;
-}	t_deque;
-
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -66,6 +47,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 int		ft_countchr(const char *str, char c, size_t n);
 char	*ft_strjoin_realloc(char **dst, const char *src);
 char	*ft_str_realloc(char *str, size_t size, int offset);
+int		ft_count_arrstr(char **words);
 
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
@@ -76,6 +58,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 
 int		ft_atoi(const char *str);
+int		ft_atoi_secure(char *word, int *n);
+int		is_gt_int_limits(char *num_as_word);
 char	*ft_itoa(int n);
 int		ft_min_nbr(int a, int b);
 
@@ -104,9 +88,18 @@ int		print_unsigned_number(unsigned int number, t_cs sc);
 int		print_unsigned_hex(unsigned int number, t_cs sc);
 int		ft_printf(const char *format, ...);
 
+void	ft_putarr_ints(int *ints, int size);
+void	ft_putarr_str(char **words);
+
 /**
- * list methods
+ * list
 */
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -116,10 +109,26 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_lstindex(t_list *lst, void *content, int *(*cmp)(void *, void *));
+
 
 /**
- * deque methods
+ * deque
 */
+typedef struct s_node
+{
+	struct s_node	*prev;
+	void			*content;
+	struct s_node	*next;
+}	t_node;
+
+typedef struct s_deque
+{
+	t_node	*head;
+	t_node	*rear;
+	int		size;
+}	t_deque;
+
 t_node	*ft_new_node(t_node *prev, void *content, t_node *next);
 t_deque	*ft_new_deque(void);
 void	ft_append(t_deque **dq, void *new_content);
@@ -134,5 +143,33 @@ void	ft_iter_deque(t_deque *dq, void (*f)(void *));
  * get next line
 */
 char	*get_next_line(int fd);
+
+
+/**
+ * dictionary int-str
+*/
+typedef struct s_kv_is
+{
+	int				key;
+	char			*value;
+	struct s_kv_is	*next;
+}	t_kv_is;
+
+typedef struct s_dctis
+{
+	t_kv_is	*head;
+	t_kv_is	*tail;
+	int		count;
+}	t_dctis;
+/*
+t_dctis	*ft_new_dict_is(void);
+t_kv_is	*ft_new_entry_is(int key, char *value, t_kv_is *next);
+void	ft_clear_dict_is(t_dctis *self);
+int		ft_dict_len_is(const t_dctis *self);
+void	ft_dict_print_is(t_dctis *self);
+char	*ft_dict_get_is(t_dctis *self, int key);
+void	ft_dict_put_is(t_dctis *self, int key, char *value);
+// void	ft_dict_del_is(t_dctis *self, int key);
+*/
 
 #endif
