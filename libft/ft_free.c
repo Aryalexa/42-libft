@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_min_nbr.c                                       :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 18:29:07 by macastro          #+#    #+#             */
-/*   Updated: 2023/09/15 18:29:09 by macastro         ###   ########.fr       */
+/*   Created: 2023/06/18 10:45:31 by macastro          #+#    #+#             */
+/*   Updated: 2023/06/18 12:22:03 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_min_nbr(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	else
-		return (b);
-}
-
-int	ft_min_arrint(int *ints, int n)
+void	ft_free_arrstr(char **words)
 {
 	int	i;
-	int	min;
 
-	if (n == 0)
-		exit(-1);
-	min = ints[0];
 	i = 0;
-	while (i < n)
+	while (words[i])
 	{
-		if (ints[i] < min)
-			min = ints[i];
+		free(words[i]);
 		i++;
 	}
-	return (min);
+	free(words);
 }

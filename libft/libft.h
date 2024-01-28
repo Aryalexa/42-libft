@@ -20,6 +20,12 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
+typedef enum e_bool
+{
+	FALSE = 0,
+	TRUE
+}	t_bool;
+
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -56,12 +62,15 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_calloc(size_t count, size_t size);
+void	ft_free_arrstr(char **words);
 
 int		ft_atoi(const char *str);
 int		ft_atoi_secure(char *word, int *n);
 int		is_gt_int_limits(char *num_as_word);
 char	*ft_itoa(int n);
 int		ft_min_nbr(int a, int b);
+int		ft_min_arrint(int *ints, int n);
+
 
 /**
  * print methods
