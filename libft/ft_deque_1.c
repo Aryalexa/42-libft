@@ -53,7 +53,7 @@ t_deque	*ft_new_deque(void)
  * It adds new element at the end of the deque.
  * The deque must have been initialized with new or NULL
 */
-void	ft_append(t_deque **dq, void *new_content)
+void	ft_dq_append_rear(t_deque **dq, void *new_content)
 {
 	t_node	*rear;
 	t_node	*new_node;
@@ -81,7 +81,7 @@ void	ft_append(t_deque **dq, void *new_content)
  * It adds a new element at the beginning of the deque.
  * The deque must have been initialized with new or NULL
 */
-void	ft_append_left(t_deque **dq, void *new_content)
+void	ft_dq_append_head(t_deque **dq, void *new_content)
 {
 	t_node	*head;
 	t_node	*new_node;

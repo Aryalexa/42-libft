@@ -70,6 +70,7 @@ int		is_gt_int_limits(char *num_as_word);
 char	*ft_itoa(int n);
 int		ft_min_nbr(int a, int b);
 int		ft_min_arrint(int *ints, int n);
+int		ft_max_nbr(int a, int b);
 
 
 /**
@@ -140,10 +141,10 @@ typedef struct s_deque
 
 t_node	*ft_new_node(t_node *prev, void *content, t_node *next);
 t_deque	*ft_new_deque(void);
-void	ft_append(t_deque **dq, void *new_content);
-void	ft_append_left(t_deque **dq, void *new_content);
-void	*ft_pop_left(t_deque **dq);
-void	*ft_pop(t_deque **dq);
+void	ft_dq_append_rear(t_deque **dq, void *new_content);
+void	ft_dq_append_head(t_deque **dq, void *new_content);
+void	*ft_dq_pop_head(t_deque **dq);
+void	*ft_dq_pop_rear(t_deque **dq);
 int		ft_deque_count(t_deque *dq);
 void	ft_clear_deque(t_deque **dq, void (*del)(void *));
 void	ft_iter_deque(t_deque *dq, void (*f)(void *));
