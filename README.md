@@ -2,7 +2,7 @@
 
 This is a C library with useful general functions and structures. 
 
-This library's purpose is to make us better equipped for more complex projects.
+The purpose of this library is to better equip us for more complex projects.
 
 It has a initial version and may be updated any moment if the owner sees it appropriate.
 - Initial version: *Libft project*. It includes remade libc functions and custom functions. See releases for the submited version.

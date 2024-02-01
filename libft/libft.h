@@ -148,6 +148,7 @@ void	*ft_dq_pop_rear(t_deque **dq);
 int		ft_deque_count(t_deque *dq);
 void	ft_clear_deque(t_deque **dq, void (*del)(void *));
 void	ft_iter_deque(t_deque *dq, void (*f)(void *));
+int		ft_dq_index(t_deque *dq, void *content, int *(*cmp)(void *, void *));
 
 /**
  * get next line

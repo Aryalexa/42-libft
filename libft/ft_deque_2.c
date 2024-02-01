@@ -31,11 +31,10 @@ void	ft_clear_deque(t_deque **dq, void (*del)(void *))
 		cur = (*dq)->head;
 	}
 	free(*dq);
-
 }
 
 /**
- * Pop left
+ * Pop at the front.
  * It gets the head node, deletes it and return its content.
  * The deque must have been initialized with new or NULL
 */
@@ -62,7 +61,7 @@ void	*ft_dq_pop_head(t_deque **dq)
 }
 
 /**
- * Pop
+ * Pop at the end
  * It gets the rear node, deletes it and return its content.
  * The deque must have been initialized with new or NULL
 */
@@ -89,7 +88,7 @@ void	*ft_dq_pop_rear(t_deque **dq)
 }
 
 /**
- * Iterates the list ’lst’ and applies the function ’f’ to the content of
+ * Iterates the deque ’dq’ and applies the function ’f’ to the content of
  * each element.
 */
 void	ft_iter_deque(t_deque *dq, void (*f)(void *))
@@ -104,4 +103,21 @@ void	ft_iter_deque(t_deque *dq, void (*f)(void *))
 		f(cur->content);
 		cur = cur->next;
 	}
+}
+
+int	ft_dq_index(t_deque *dq, void *content, int *(*cmp)(void *, void *))
+{
+	int		i;
+	t_node	*cur;
+
+	i = 0;
+	cur = dq->head;
+	while (cur)
+	{
+		if (cmp(cur->content, content) == 0)
+			return (i);
+		i++;
+		cur = cur->next;
+	}
+	return (-1);
 }
