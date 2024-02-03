@@ -72,7 +72,6 @@ int		ft_min_nbr(int a, int b);
 int		ft_min_arrint(int *ints, int n);
 int		ft_max_nbr(int a, int b);
 
-
 /**
  * print methods
 */
@@ -121,7 +120,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_lstindex(t_list *lst, void *content, int *(*cmp)(void *, void *));
 
-
 /**
  * deque
 */
@@ -154,7 +152,6 @@ int		ft_dq_index(t_deque *dq, void *content, int *(*cmp)(void *, void *));
  * get next line
 */
 char	*get_next_line(int fd);
-
 
 /**
  * dictionary int-str

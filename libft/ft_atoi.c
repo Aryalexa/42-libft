@@ -82,7 +82,7 @@ int	is_gt_int_limits(char *num_as_word)
  * It does not accept '+' as sign.
  * Returns 0 if success, -1 otherwise.
 */
-int ft_atoi_secure(char *word, int *n)
+int	ft_atoi_secure(char *word, int *n)
 {
 	int	i;
 

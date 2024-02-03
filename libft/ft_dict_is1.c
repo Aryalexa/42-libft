@@ -32,7 +32,6 @@ t_kv_is	*ft_new_entry_is(int key, char *value, t_kv_is *next)
 	entry->key = key;
 	entry->value = value;
 	entry->next = next;
-
 	return (entry);
 }
 

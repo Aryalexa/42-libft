@@ -35,4 +35,3 @@ void	ft_putarr_str(char **words)
 		i++;
 	}
 }
-

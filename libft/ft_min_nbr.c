@@ -24,7 +24,7 @@ int	ft_min_arrint(int *ints, int n)
 	int	min;
 
 	if (n == 0)
-		return(-999);
+		return (-999);
 	min = ints[0];
 	i = 0;
 	while (i < n)

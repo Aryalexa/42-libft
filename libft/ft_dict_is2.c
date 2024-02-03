@@ -20,8 +20,6 @@ static t_kv_is	*ft_dict_find(t_dctis *self, int key)
 {
 	t_kv_is	*cur;
 
-	// if (key < 0)
-	// 	return (NULL);
 	cur = self->head;
 	while (cur != NULL)
 	{
