@@ -47,6 +47,7 @@ char	*ft_strndup(const char *str, int n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
+int		ft_count_words(const char *s, char sep);
 char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
@@ -65,7 +66,7 @@ void	*ft_calloc(size_t count, size_t size);
 void	ft_free_arrstr(char **words);
 
 int		ft_atoi(const char *str);
-int		ft_atoi_secure(char *word, int *n);
+t_bool	ft_atoi_secure(char *word, int *n);
 int		is_gt_int_limits(char *num_as_word);
 char	*ft_itoa(int n);
 int		ft_min_nbr(int a, int b);

@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-static int	count_words(const char *s, char c)
+int	ft_count_words(const char *s, char sep)
 {
 	int	count;
 
 	count = 0;
 	while (*s)
 	{
-		while (*s == c)
+		while (*s == sep)
 			s++;
 		if (*s)
 			count++;
-		while (*s && *s != c)
+		while (*s && *s != sep)
 			s++;
 	}
 	return (count);
@@ -48,19 +48,6 @@ static int	ft_dupstop(char **dst, const char *src, char c)
 	return (len);
 }
 
-static void	free_strlst(char **strs)
-{
-	int	i;
-
-	i = 0;
-	while (strs[i])
-	{
-		free(strs[i]);
-		i++;
-	}
-	free(strs);
-}
-
 /**
  * It allocates memory using malloc(3) for an array of strings
  * which is the result of dividing the string 's' in substrings 
@@ -73,7 +60,7 @@ char	**ft_split(char const *s, char c)
 	int		dir_j;
 	int		wj_len;
 
-	dirs = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
+	dirs = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
 	if (!dirs)
 		return (0);
 	dir_j = 0;
@@ -86,7 +73,7 @@ char	**ft_split(char const *s, char c)
 			wj_len = ft_dupstop(&dirs[dir_j++], s, c);
 			if (wj_len < 0)
 			{
-				free_strlst(dirs);
+				ft_free_arrstr(dirs);
 				return (NULL);
 			}
 			s += wj_len;

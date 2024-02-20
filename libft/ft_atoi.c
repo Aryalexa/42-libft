@@ -80,24 +80,24 @@ int	is_gt_int_limits(char *num_as_word)
  * It saves the integer in the memory given by `n`.
  * The string `word` must contain only digits.
  * It does not accept '+' as sign.
- * Returns 0 if success, -1 otherwise.
+ * Returns TRUE if success, FALSE otherwise.
 */
-int	ft_atoi_secure(char *word, int *n)
+t_bool	ft_atoi_secure(char *word, int *n)
 {
 	int	i;
 
 	i = 0;
 	if (!word)
-		return (-1);
+		return (FALSE);
 	if (word[i] == '-')
 		i++;
 	if (!word[i])
-		return (-1);
+		return (FALSE);
 	while (word[i])
 		if (!ft_isdigit(word[i++]))
-			return (-1);
+			return (FALSE);
 	if (is_gt_int_limits(word))
-		return (-1);
+		return (FALSE);
 	*n = ft_atoi(word);
-	return (0);
+	return (TRUE);
 }
