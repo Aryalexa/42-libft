@@ -66,6 +66,7 @@ void	*ft_calloc(size_t count, size_t size);
 void	ft_free_arrstr(char **words);
 
 int		ft_atoi(const char *str);
+int		ft_atoi_hex(const char *str, int b);
 t_bool	ft_atoi_secure(char *word, int *n);
 int		is_gt_int_limits(char *num_as_word);
 char	*ft_itoa(int n);

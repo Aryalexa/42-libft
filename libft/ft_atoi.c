@@ -41,6 +41,35 @@ int	ft_atoi(const char *str)
 	return (number);
 }
 
+int	ft_atoi_hex(const char *str, int b)
+{
+	int	i;
+	int	number;
+	int	sign;
+
+	number = 0;
+	sign = 1;
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = sign * (-1);
+		i++;
+	}
+	while (ft_isdigit(str[i])
+		|| ('A' <= ft_toupper(str[i]) && ft_toupper(str[i]) <= 'F'))
+	{
+		if (ft_isdigit(str[i]))
+			number = number * b + sign * (str[i] - '0');
+		else
+			number = number * b + sign * (ft_toupper(str[i]) - 'A' + 10);
+		i++;
+	}
+	return (number);
+}
+
 /**
  * Is the number represented out of int type limits?
  * 1 - yes
