@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 /**
  * The strchr() function locates the first occurrence of c (converted to a char) 
  * in the string pointed to by s.  The terminating null character is considered 
@@ -26,9 +28,24 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
-	while ((unsigned char)s[i] != (unsigned char)c && s[i] != 0)
+	while ((unsigned char)s[i] != (unsigned char)c && s[i])
 		i++;
 	if ((unsigned char)s[i] == (unsigned char)c)
 		return ((char *)(s + i));
-	return (0);
+	return (NULL);
+}
+
+/**
+ * @return first index of the character in the string, -1 if not found.
+*/
+int	ft_strchri(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while ((unsigned char)s[i] != (unsigned char)c && s[i])
+		i++;
+	if ((unsigned char)s[i] == (unsigned char)c)
+		return (i);
+	return (-1);
 }
