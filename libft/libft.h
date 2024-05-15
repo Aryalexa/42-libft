@@ -34,6 +34,7 @@ int		ft_isprint(char c);
 int		ft_isspace(char c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+int		ft_str_is_numeric(char *str);
 
 char	*ft_strchr(const char *s, int c);
 int		ft_strchri(const char *s, int c);
@@ -47,6 +48,9 @@ char	*ft_strdup(const char *s1);
 char	*ft_strndup(const char *str, int n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_inplace(char *s1, const char *s2);
+char	*ft_strappendc(char *s1, const char c);
+char	*ft_strappendc_inplace(char *s1, const char c);
 char	*ft_strtrim(char const *s1, char const *set);
 int		ft_count_words(const char *s, char sep);
 char	**ft_split(char const *s, char c);
