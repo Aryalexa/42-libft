@@ -1,11 +1,4 @@
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
-AR		= ar -rcs
-RM		= /bin/rm -f
-
-NAME	= libft.a
-INCLUDE	= libft.h
-SRCS	= ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
+SRCS	= 	ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_tolower.c ft_toupper.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
 			ft_strchr.c ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_atoi.c \
 			ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_free.c\
@@ -22,15 +15,18 @@ SRCS	= ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_printf_utils.c \
 			get_next_line.c ft_strjoin_realloc.c ft_str_realloc.c \
 			ft_dict_is1.c ft_dict_is2.c
+
 OBJS	= $(SRCS:.c=.o)
+NAME	= libft.a
+CC		= gcc
+RM		= /bin/rm -f
+CFLAGS	= -Wall -Wextra -Werror
+AR		= ar rc
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) $(INCLUDE)
+$(NAME):	$(OBJS)
 			$(AR) $(NAME) $(OBJS)
-
-.c.o:
-			$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $(<:.c=.o)
 
 clean:
 			$(RM) $(OBJS)

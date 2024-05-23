@@ -44,13 +44,7 @@ char	*ft_number_to_base(unsigned long long n, char *base, int b)
 	word = (char *)ft_calloc(len + 1, 1);
 	if (!word)
 		return (NULL);
-	else if (n < 0)
-	{
-		num = -1 * n;
-		word[0] = '-';
-	}
-	else
-		num = n;
+	num = n;
 	if (n == 0)
 		word[0] = '0';
 	len--;
