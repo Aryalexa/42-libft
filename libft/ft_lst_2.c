@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macastro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: macastro <macastro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 19:45:52 by macastro          #+#    #+#             */
-/*   Updated: 2023/10/04 19:45:56 by macastro         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:40:19 by macastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	return (newlst);
 }
 
-int	ft_lstindex(t_list *lst, void *content, int *(*cmp)(void *, void *))
+int	ft_lstindex(t_list *lst, void *content, int (*cmp)(void *, void *))
 {
 	int	i;
 
